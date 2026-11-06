@@ -21,7 +21,7 @@ class MetadataFormatter(logging.Formatter):
         else:
             # Runtime messages and tracebacks can contain request data.
             fields["line"] = record.lineno
-            if record.exc_info:
+            if record.exc_info and record.exc_info[0] is not None:
                 fields["error_type"] = record.exc_info[0].__name__
         return json.dumps(fields, separators=(",", ":"))
 

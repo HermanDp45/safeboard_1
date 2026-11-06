@@ -167,6 +167,20 @@ class PrivateAPITests(unittest.IsolatedAsyncioTestCase):
         self.assertNotIn("private", result)
         self.assertEqual(json.loads(result)["error_type"], "ValueError")
 
+    def test_empty_exception_info_does_not_break_sanitization(self):
+        record = logging.LogRecord(
+            "vllm.engine",
+            logging.ERROR,
+            "engine.py",
+            42,
+            "private prompt %s",
+            ("private answer",),
+            (None, None, None),
+        )
+        result = MetadataFormatter().format(record)
+        self.assertNotIn("private", result)
+        self.assertEqual(json.loads(result)["level"], "ERROR")
+
 
 if __name__ == "__main__":
     unittest.main()
