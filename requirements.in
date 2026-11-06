@@ -1,0 +1,3 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+vllm @ https://github.com/vllm-project/vllm/releases/download/v0.33.0rc3/vllm-0.33.0%2Bcpu-cp38-abi3-manylinux_2_39_aarch64.whl#sha256=5fe4be19d0c35e345de59792a5648f80e24e0508c098391360a2d243869958f7
+torch==2.14.0+cpu

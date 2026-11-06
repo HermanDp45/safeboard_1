@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "disable_existing_loggers": false,
+  "formatters": {
+    "metadata": {"()": "service.MetadataFormatter"}
+  },
+  "handlers": {
+    "console": {
+      "class": "logging.StreamHandler",
+      "level": "WARNING",
+      "formatter": "metadata",
+      "stream": "ext://sys.stdout"
+    },
+    "audit": {
+      "class": "logging.StreamHandler",
+      "level": "INFO",
+      "formatter": "metadata",
+      "stream": "ext://sys.stdout"
+    },
+    "discard": {"class": "logging.NullHandler"}
+  },
+  "root": {"handlers": ["console"], "level": "WARNING"},
+  "loggers": {
+    "vllm": {"handlers": ["console"], "level": "WARNING", "propagate": false},
+    "uvicorn": {"handlers": ["console"], "level": "WARNING", "propagate": false},
+    "uvicorn.access": {"handlers": ["discard"], "propagate": false},
+    "inference.audit": {"handlers": ["audit"], "level": "INFO", "propagate": false}
+  }
+}

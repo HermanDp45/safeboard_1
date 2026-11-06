@@ -1,0 +1,18 @@
+host: 0.0.0.0
+port: 8000
+served-model-name: qwen
+dtype: bfloat16
+max-model-len: 2048
+max-num-seqs: 1
+max-num-batched-tokens: 256
+kv-cache-memory-bytes: 268435456
+enforce-eager: true
+disable-log-requests: true
+disable-log-outputs: true
+disable-log-deltas: true
+disable-fastapi-docs: true
+disable-uvicorn-access-log: true
+middleware:
+  - service.PrivateAPI
+logging-config:
+  pylogging_config_file: /etc/vllm/logging.json
